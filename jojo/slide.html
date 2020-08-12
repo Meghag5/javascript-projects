@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Slide in on Scroll</title>
+  </head>
+  <body>
+    <div class="site-wrap">
+      <h1 style="text-align: center; color: firebrick;">My love birthday</br>
+      (Jyotika Tuteja)</h1>
+
+      <p>My teddy I love u so much Tujhe nhi pta lekin tu jaan h meri.</p>
+      <p>Tu jitney bhi kamini ho lekin fir bhi tu jaan h meri.</p>
+      <video width="640" height="360" controls>
+        <source src="Jojo1.mp4"/>
+        <source src="Jojo1.ogg"/>
+    </video>
+      <p>
+        Yaar jojo kitney baar bolun I love u.Yaar sachi mai I love u so much.
+      </p>
+    
+      <img src="jojo1.jpeg" style="width: 80%;" class="align-right slide-in" />
+
+      <p>Yaar ladki humne itne mazze kare h na sath mai kitna bunk kiya h sath mai. Saari techers ki leli thi. Wednesday ka last history period hmara fixed tha bunk karna isliye prachi 10th mai humse aage nikal gai.</p>
+      <h1>LOL...HAHAHAHAHA</h1>
+
+      <img src="jojo2.jpeg" class="align-left slide-in" />
+
+      <p>
+        Tum jaise Ch... ka sahara h doston yeh dil tumhare pyaar ka maara h doston. Love u my joji.Card ki pic bhi bhejdiyo. Aur tujhe yaad h patang udai thi tune hmare ghar pe aur tu rone lag gyi ki prachi se milwade. <h1>HEHEHE..</h1>
+      </p>
+
+      <img src="jojo3.jpeg" class="align-right slide-in" />
+
+      <p>
+        Bada mazza aya tha na teachers pe aur bhi photos h teri daali nhi maine.<h1>HIHIHI..</h1>
+      </p>
+      <p>Yaar hmare park ki pics aurr mazze!!Missing all yaar.Kab shuru karne ka iraada h waapas ladki.</p>
+      <img src="jojo4.jpeg" class="align-left slide-in" />
+
+      <p>
+        
+      </p>
+
+      <img src="jojo5.jpeg" class="align-right slide-in" />
+
+      <p>
+        
+      </p>
+      <img src="jojo6.jpeg" class="align-left slide-in" />
+
+      <p>
+        
+      </p>
+
+      <img src="jojo7.jpeg" class="align-right slide-in" />
+
+      <p>
+       
+      </p>
+      <img src="jojo8.jpeg" class="align-left slide-in" />
+      <p>
+        Jojo yaar tu vo ladki Jo achi nhi fir bhi mujhe sabse zyaada pasand h.
+      </p>
+      <h1>Happy birthday to my cute jojo</h1>
+    </div>
+
+    <script>
+      function debounce(func, wait = 20, immediate = true) {
+        var timeout;
+        return function () {
+          var context = this,
+            args = arguments;
+          var later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+          };
+          var callNow = immediate && !timeout;
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+          if (callNow) func.apply(context, args);
+        };
+      }
+
+      const sliderImages = document.querySelectorAll(".slide-in");
+
+      function checkSlide(e) {
+        sliderImages.forEach((sliderImage) => {
+          //half way through the image
+          const slideInAt =
+            window.scrollY + window.innerHeight - sliderImage.height / 2;
+          // bottom of the image
+          const imageBottom = sliderImage.offsetTop + sliderImage.height;
+          const isHalfShown = slideInAt > sliderImage.offsetTop;
+          const isNotScrolledPast = window.scrollY < imageBottom;
+          if (isHalfShown && isNotScrolledPast) {
+            sliderImage.classList.add("active");
+          } else {
+            sliderImage.classList.remove("active");
+          }
+        });
+      }
+
+      window.addEventListener("scroll", debounce(checkSlide));
+    </script>
+
+    <style>
+      html {
+        box-sizing: border-box;
+        
+        background: url(https://s3.envato.com/files/140218063/04_590x332.jpg);
+
+        font-family: "helvetica neue";
+        font-size: 20px;
+        font-weight: 200;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+
+      h1 {
+        margin-top: 0;
+      }
+
+      img {
+          margin-top: 10px;
+        width: 400px;
+        height: 400px;
+      }
+
+      .site-wrap {
+        max-width: 700px;
+        margin: 100px auto;
+        background: white;
+        padding: 40px;
+        text-align: justify;
+      }
+
+      .align-left {
+        float: left;
+        margin-right: 20px;
+      }
+
+      .align-right {
+        float: right;
+        margin-left: 20px;
+      }
+
+      .slide-in {
+        opacity: 0;
+        transition: all 0.5s;
+      }
+
+      .align-left.slide-in {
+        transform: translateX(-30%) scale(0.95);
+      }
+
+      .align-right.slide-in {
+        transform: translateX(30%) scale(0.95);
+      }
+
+      .slide-in.active {
+        opacity: 1;
+        transform: translateX(0%) scale(1);
+      }
+    </style>
+  </body>
+</html>
